@@ -1,0 +1,9 @@
+Other Points:
+
+    Enabling and Configuring UFW:
+        
+        I used 'sudo apt-get install ufw -y' to make sure UFW is installed and up to date. Then I executed 'sudo ufw default allow outgoing; sudo ufw default deny incoming; sudo ufw allow ssh; sudo ufw allow https; sudo ufw allow 80; sudo ufw allow 8000; sudo ufw allow http' to configure UFW preferences and then I used 'sudo ufw enable' to enable UFW.
+
+    Disable SSH Root Login:
+
+        
