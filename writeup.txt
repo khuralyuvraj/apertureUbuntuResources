@@ -1,9 +1,13 @@
 Other Points:
 
-    Enabling and Configuring UFW:
+    Users:
+
+    I compared users in the README to the users on the system, and I found that wheatley wasn't supposed to be there so I used 'sudo userdel -f wheatley' to remove him from the system. 
+
+    Enabling and Configuring UFW (I got points for denying incoming connections and enabling UFW):
         
         I used 'sudo apt-get install ufw -y' to make sure UFW is installed and up to date. Then I executed 'sudo ufw default allow outgoing; sudo ufw default deny incoming; sudo ufw allow ssh; sudo ufw allow https; sudo ufw allow 80; sudo ufw allow 8000; sudo ufw allow http' to configure UFW preferences and then I used 'sudo ufw enable' to enable UFW.
 
-    Disable SSH Root Login:
+    Configuring SSH config file (Port, Disabling Root Login, Key-Based Authentication, Restarting the service):
 
-        
+        I used 'sudo nano /etc/ssh/sshd_config' to edit the config file, then I changed the port from the default 22 to port 1382 (by changing '#Port 22' to 'Port 1382') specified in the README for security reasons, I then disabled ssh root login by changing 'PermitRootLogin yes' to 'PermitRootLogin no'
