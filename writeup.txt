@@ -10,4 +10,10 @@ Other Points:
 
     Configuring SSH config file (Port, Disabling Root Login, Key-Based Authentication, Restarting the service):
 
-        I used 'sudo nano /etc/ssh/sshd_config' to edit the config file, then I changed the port from the default 22 to port 1382 (by changing '#Port 22' to 'Port 1382') specified in the README for security reasons, I then disabled ssh root login by changing 'PermitRootLogin yes' to 'PermitRootLogin no'
+        I changed 'PubkeyAuthentication no' to 'PubkeyAuthentication yes', and I changed 'PasswordAuthentication yes' to 'PasswordAuthentication no' to force ssh to only use key-based authentication. Then I generated 
+
+        I then disabled ssh root login by changing 'PermitRootLogin yes' to 'PermitRootLogin no'.
+
+        I used 'sudo nano /etc/ssh/sshd_config' to edit the config file, then I changed the port from the default 22 to port 1382 (by changing '#Port 22' to 'Port 1382') specified in the README for security reasons.
+
+        I used 'systemctl restart ssh.service' to restart the SSH service.
