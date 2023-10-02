@@ -2,13 +2,17 @@ Other Points:
 
     Users:
 
-    I compared users in the README to the users on the system, and I found that wheatley wasn't supposed to be there so I used 'sudo userdel -f wheatley' to remove him from the system. 
+        I compared users in the README to the users on the system, and I found that wheatley wasn't supposed to be there so I used 'sudo userdel -f wheatley' to remove him from the system.
+
+        And also that 'caroline' was in the README but wasn't on the system, so I used 'sudo useradd caroline' to add caroline to the system, and 'sudo passwd caroline' to add a password to caroline's account to 'A@p3RtU!reL4Bs', then I used 'sudo usermod -aG aperturestaff caroline' to add caroline to the aperturestaff group.
+
+        Then I added chell to testsubjects by using 'sudo usermod -aG testsubjects chell' to add chell to the testsubjects group.
 
     Enabling and Configuring UFW (I got points for denying incoming connections and enabling UFW):
         
         I used 'sudo apt-get install ufw -y' to make sure UFW is installed and up to date. Then I executed 'sudo ufw default allow outgoing; sudo ufw default deny incoming; sudo ufw allow ssh; sudo ufw allow https; sudo ufw allow 80; sudo ufw allow 8000; sudo ufw allow http' to configure UFW preferences and then I used 'sudo ufw enable' to enable UFW.
 
-    Configuring SSH config file (Port, Disabling Root Login, Key-Based Authentication, Restarting the service):
+    Configuring SSH config file [/etc/ssh/sshd_config] (Port, Disabling Root Login, Key-Based Authentication, Restarting the service):
 
         I changed 'PubkeyAuthentication no' to 'PubkeyAuthentication yes', and I changed 'PasswordAuthentication yes' to 'PasswordAuthentication no' to force ssh to only use key-based authentication. Then I generated 
 
