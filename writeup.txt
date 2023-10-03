@@ -10,7 +10,7 @@ Other Points:
 
     Enabling and Configuring UFW (I got points for denying incoming connections and enabling UFW):
         
-        I used 'sudo apt-get install ufw -y' to make sure UFW is installed and up to date. Then I executed 'sudo ufw default allow outgoing; sudo ufw default deny incoming; sudo ufw allow ssh; sudo ufw allow https; sudo ufw allow 80; sudo ufw allow 8000; sudo ufw allow http' to configure UFW preferences and then I used 'sudo ufw enable' to enable UFW.
+        I used 'sudo apt-get install ufw -y' to make sure UFW is installed and up to date. Then I executed 'sudo ufw default allow outgoing; sudo ufw default deny incoming; sudo ufw allow ssh; sudo ufw allow https; sudo ufw allow 80; sudo ufw allow 8000; sudo ufw allow http; sudo ufw allow from any proto tcp port 50000:50100' to configure UFW preferences and then I used 'sudo ufw enable' to enable UFW.
 
     Configuring SSH config file [/etc/ssh/sshd_config] (Port, Disabling Root Login, Key-Based Authentication, Restarting the service):
 
@@ -21,3 +21,11 @@ Other Points:
         I used 'sudo nano /etc/ssh/sshd_config' to edit the config file, then I changed the port from the default 22 to port 1382 (by changing '#Port 22' to 'Port 1382') specified in the README for security reasons.
 
         I used 'systemctl restart ssh.service' to restart the SSH service.
+    
+    Configuring FTP Server:
+
+        I used 'sudo nano /etc/vsftpd.conf' to edit the config file, then I changed the 'anonymous_enable=YES' to 'anonymous_enable=NO', to allow only the authorized users to access the server.
+
+        I created a directory under /etc/ssl called 'private' and then I used 'openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/ssl/private/vsftpd.pem -out /etc/ssl/private/vsftpd.pem' to create a ssl certificate and the key in one file. Then I used 'sudo nano /etc/vsftpd.conf' to edit the config file and added the following lines 'rsa_cert_file=/etc/ssl/private/vsftpd.pem;\nrsa_private_key_file=/etc/ssl/private/vsftpd.pem;\nssl_enable=YES;\nallow_anon_ssl=NO;\nforce_local_data_ssl=YES;\nforce_local_logins_ssl=YES;\nssl_tlsv1=YES;\nssl_sslv2=NO;\nssl_sslv3=NO;\nrequire_ssl_reuse=NO;\nssl_ciphers=HIGH' to configure the server to only use TLS and then save and use 'sudo /etc/init.d/vsftpd restart' to restart the server.
+
+        I added the following lines to the end of the config file: 'pasv_enable=YES', 'pasv_min_port=50000', and 'pasv_max_port=50100', and then 
