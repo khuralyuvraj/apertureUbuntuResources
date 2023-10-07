@@ -37,3 +37,9 @@ Other Points:
     Removed Packages/Services/Files (Prohibited MP3s, nginx):
         - I used 'sudo find / -iname *.mp3' to find all the mp3 files on the system, then I used 'sudo rm -rf sudo rm -rf /home/spacecore/Music/spaaaaaace.mp3 /home/cjohnson/Music/radio.mp3' to remove the suspicious mp3 files.
         - I removed nginx with 'sudo apt-get purge nginx* -y' because apache is already being utilized for the web server.
+    
+    Configuring config files in /etc (Removing Insecure Sudoers Rule, Setting a Secure Pass Max Age, Setting a Secure Pass Min Age, Setting Correct Perms for /etc/passwd):
+        - I used 'sudo su' to switch to the root user, then I used 'visudo /etc/sudoers' to edit the /etc/sudoers file. After scanning through it, I found a suspicious line that said 'gman ALL=(ALL:ALL) NOPASSWD: ALL', so I commented it out.
+        - I used 'sudo nano /etc/login.defs' to open the login conf file and then I changed 'PASS_MAX_DAYS 99999' to 'PASS_MAX_DAYS 30'
+        - (Connecting to point above) I changed 'PASS_MIN_DAYS 0' to 'PASS_MIN_DAYS 5' and 'PASS_WARN_AGE 7' to 'PASS_WARN_AGE 10'
+        - (It automatically changed the perms for /etc/passwd file but if it didn't I'd do the following) I used 'sudo chmod 644 /etc/passwd' to set the correct permissions.
