@@ -46,3 +46,4 @@ Other Points:
         - (It automatically changed the perms for /etc/passwd file but if it didn't I'd do the following) I used 'sudo chmod 644 /etc/passwd' to set the correct permissions.
         - I used 'sudo nano /etc/security/pwquality.conf' to config the pwquality, then I changed 'dcredit', 'ucredit', 'lcredit', and 'ocredit' all equal to '-1'
         - (Connecting to point above) I changed 'minlen = 6' to 'minlen = 8', '# difok = 1' to 'difok = 3' and '# gecoscheck = 0' to 'gecoscheck = 1'
+        
