@@ -2,7 +2,7 @@ Other Points:
 
     Users (Removing wheatley, Adding caroline, Modifying chell):
         - I compared users in the README to the users on the system, and I found that wheatley wasn't supposed to be there so I used 'sudo userdel -f wheatley' to remove him from the system.
-        - And also that 'caroline' was in the README but wasn't on the system, so I used 'sudo useradd caroline' to add caroline to the system, and 'sudo passwd caroline' to add a password to caroline's account to 'A@p3RtU!reL4Bs', then I used 'sudo usermod -aG aperturestaff caroline' to add caroline to the aperturestaff group.
+        - And also that 'caroline' was in the README but wasn't on the system, so I used 'sudo useradd -m caroline' to add caroline and her home directory to the system, and 'sudo passwd caroline' to add a password to caroline's account to 'A@p3RtU!reL4Bs', then I used 'sudo usermod -aG aperturestaff caroline' to add caroline to the aperturestaff group.
         - Then I added chell to testsubjects by using 'sudo usermod -aG testsubjects chell' to add chell to the testsubjects group.
 
     Software & Updates (Automatically Check System Updates):
@@ -35,8 +35,9 @@ Other Points:
         - I toggled the 'Automatic Screen Lock' to on
 
     Removed Packages/Services/Files (Prohibited MP3s, nginx):
-        - I used 'sudo find / -iname *.mp3' to find all the mp3 files on the system, then I used 'sudo rm -rf sudo rm -rf /home/spacecore/Music/spaaaaaace.mp3 /home/cjohnson/Music/radio.mp3' to remove the suspicious mp3 files.
+        - I used 'sudo find / -iname *.mp3' to find all the mp3 files on the system, then I used 'sudo rm -rf /home/spacecore/Music/spaaaaaace.mp3 /home/cjohnson/Music/radio.mp3' to remove the suspicious mp3 files.
         - I removed nginx with 'sudo apt-get purge nginx* -y' because apache is already being utilized for the web server.
+        - I removed nfs with 'sudo apt-get purge nfs* -y' because ftp is already being utilized for the network file share.
     
     Configuring config files in /etc (Removing Insecure Sudoers Rule, Setting a Secure Pass Max Age, Setting a Secure Pass Min Age, Setting a Secure Amount of Login Retries, Setting Correct Perms for /etc/passwd):
         - I used 'sudo su' to switch to the root user, then I used 'visudo /etc/sudoers' to edit the /etc/sudoers file. After scanning through it, I found a suspicious line that said 'gman ALL=(ALL:ALL) NOPASSWD: ALL', so I commented it out.
